@@ -3,6 +3,7 @@
 // Include the mailchimp.php file from the Github repo. Also, bring in the classes that the namespace defines
 include('./MailChimp.php'); 
 include('./mailchimp_lists.php');
+# include('./loginradius_api.php');
 use \DrewM\MailChimp\MailChimp;
 
 // Decode the obtained json response to get a php object

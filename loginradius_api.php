@@ -33,7 +33,16 @@ $accountObject = new AccountAPI (LR_API_KEY, LR_API_SECRET, array('output_format
 $customObject = new CustomObjectAPI (LR_API_KEY, LR_API_SECRET, array('output_format' => 'json'));
 
 try{
-    $providers = $getProviderObject->getProvidersList();
+    $accesstoken = $socialLoginObject->exchangeAccessToken($request_token);//$request_token loginradius token get from social/traditional interface after success authentication.
+    $access_token= $accesstoken->access_token;
+}
+catch (LoginRadiusException $e){
+    $e->getMessage();
+    $e->getErrorResponse();
+}
+
+try{
+    $userProfileData = $socialLoginObject->getUserProfiledata($access_token);
 }
 catch (LoginRadiusException $e){
     $e->getMessage();
